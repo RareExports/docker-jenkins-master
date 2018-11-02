@@ -10,5 +10,5 @@ This will get you up and running with some basic jobs and default config.
 2. Clone this repository to your local drive
 3.  From the project root run the following
 	- `make build`
-	- `make run` (if this is your first time it will ask for your docker host IP)
-4. Point your browser to http://localhost (you can get this by running "docker-machine ip default")
+	- `make run`
+4. Point your browser to http://localhost
