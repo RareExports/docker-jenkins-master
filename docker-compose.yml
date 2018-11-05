@@ -15,6 +15,16 @@ services:
       - "80:80"
     networks:
       - jenkins-net
+  node:
+    build: ./jenkins-node
+  proxy:
+    build: ./docker-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      jenkins-net:
+        aliases:
+          - proxy1
 volumes:
   jenkins-data:
   jenkins-log:
