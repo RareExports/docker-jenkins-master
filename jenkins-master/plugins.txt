@@ -1,0 +1,10 @@
+jdk-tool
+jclouds-jenkins
+token-macro
+durable-task
+docker-plugin
+git
+timestamper
+ws-cleanup
+thinBackup
+role-strategy
