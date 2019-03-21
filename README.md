@@ -23,7 +23,8 @@ These steps will allow for persistent changes.
 1. `make stop`
 2. Include updates
 3. `make build`
-4. `make run`
+4. `make clean-images`
+5. `make run`
 
 # Useful Commands
 

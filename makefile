@@ -4,6 +4,9 @@ build:	## make Build - Build Docker
 	@docker-compose -p jenkins build
 run:	## make run - Run Docker
 	@docker-compose -p jenkins up -d
+deploy: ## make deploy - triggers make run and build together
+	@docker-compose -p jenkins build
+	@docker-compose -p jenkins up -d
 stop:	## make stop - stop Docker 
 	@docker-compose -p jenkins down
 clean-data:	## make clean-data - stops and removes containers,networks,volumes, and images
@@ -16,3 +19,5 @@ jenkins-log:	## make jenkins-log - ports jenkins logs to terminal
 	@docker-compose -p jenkins exec master tail -f /var/log/jenkins/jenkins.log
 jenkins-password:	## make jenkins-password - outputs jenkins admin password to terminal
 	@docker-compose -p jenkins exec master cat /var/jenkins_home/secrets/initialAdminPassword
+create-machine: ## make create-machine - 
+build-machine: ## make build-machine - Create 
