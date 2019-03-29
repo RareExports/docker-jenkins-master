@@ -30,3 +30,7 @@ These steps will allow for persistent changes.
 
 Connect to Jenkins Master as root
 `docker-compose -p jenkins exec -u 0 master /bin/bash` 
+
+#Todo
+Add in Configuration as Code Jenkins Plugin examples
+Build off this and implement HashiCorp Vault/Consul setup for reading secrets as opposed to using Docker secrets 
