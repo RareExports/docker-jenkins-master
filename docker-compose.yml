@@ -9,14 +9,17 @@ services:
       - jenkins-data:/var/jenkins_home
     networks:
       - stack
+  
   nginx:
     build: ./jenkins-nginx
     ports:
       - "80:80"
     networks:
       - stack
+  
   node:
     build: ./jenkins-node
+  
   proxy:
     build: ./docker-proxy
     volumes:
@@ -25,6 +28,37 @@ services:
       stack:
         aliases:
           - proxy1
+  
+  vault:
+    build: ./vault
+    ports:
+      - 8200:8200
+    volumes:
+      - ./vault/config:/vault/config
+      - ./vault/policies:/vault/policies
+      - ./vault/data:/vault/data
+      - ./vault/logs:/vault/logs
+    environment:
+      - VAULT_ADDR=http://127.0.0.1:8200
+    command: server -config=/vault/config/vault-config.hcl
+    cap_add:
+      - IPC_LOCK
+    depends_on:
+      - consul
+    networks:
+      - stack
+
+  consul:
+    build: ./consul
+    ports:
+      - 8500:8500
+    command: agent -server -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect 1 -config-file=/consul/config/config.json
+    volumes:
+      - ./consul/config/consul-config.json:/consul/config/config.json
+      - ./consul/data:/consul/data
+    networks:
+      - stack
+
 volumes:
   jenkins-data:
   jenkins-log:
