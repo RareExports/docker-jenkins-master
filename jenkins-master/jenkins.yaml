@@ -1,0 +1,38 @@
+jenkins:
+  authorizationStrategy:
+    globalMatrix:
+      grantedPermissions:
+        - "Overall/Read:anonymous"
+        - "Job/Read:anonymous"
+        - "View/Read:anonymous"
+        - "Overall/Administer:authenticated"
+  crumbIssuer: "standard"
+  securityRealm:
+    local:
+      allowsSignup: true
+      users:
+       - id: admin
+         password: ${rootPassword}
+tool:
+  git:
+    installations:
+      - name: Default
+        home: "git"
+  terraforminstallation:
+    installations:
+      - name : terraform-0.11.13
+        home: ""
+        properties:
+          - installSource:
+              installers:
+                - terraformInstaller:
+                    id: '0.11.13-linux-amd64'
+
+security:
+  remotingCLI:
+    enabled: false
+
+unclassified:
+  location:
+    url: http://localhost
+    adminAddress: lsantos@hashicorp.com

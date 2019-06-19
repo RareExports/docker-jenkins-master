@@ -7,6 +7,12 @@ services:
     volumes:
       - jenkins-log:/var/log/jenkins
       - jenkins-data:/var/jenkins_home
+      - ./jenkins.yaml:/var/jenkins_home/jenkins.yaml
+    environment:
+      - CASC_JENKINS_CONFIG=/var/jenkins_home/jenkins.yaml
+      - CASC_VAULT_TOKEN=5bTlaEN3RIwnFdDpP9a3OlGp
+      - CASC_VAULT_PATH=/secret/jenkins
+      - CASC_VAULT_URL=http://localhost:8200
     networks:
       - stack
   
