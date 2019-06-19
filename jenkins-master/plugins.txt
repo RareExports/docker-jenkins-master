@@ -8,3 +8,6 @@ timestamper
 ws-cleanup
 thinBackup
 role-strategy
+configuration-as-code 
+configuration-as-code-support
+workflow-cps-global-lib
