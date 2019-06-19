@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   master:
     build: ./jenkins-master
@@ -8,13 +8,13 @@ services:
       - jenkins-log:/var/log/jenkins
       - jenkins-data:/var/jenkins_home
     networks:
-      - jenkins-net
+      - stack
   nginx:
     build: ./jenkins-nginx
     ports:
       - "80:80"
     networks:
-      - jenkins-net
+      - stack
   node:
     build: ./jenkins-node
   proxy:
@@ -22,11 +22,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      jenkins-net:
+      stack:
         aliases:
           - proxy1
 volumes:
   jenkins-data:
   jenkins-log:
+
 networks:
-  jenkins-net:
+  stack:
